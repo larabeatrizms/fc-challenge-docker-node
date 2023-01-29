@@ -22,6 +22,8 @@ Running project:
 docker-compose up
 ```
 
+App is running at port 8080. http://localhost:8080
+
 ---
 
 > Site [larabeatriz.com](https://larabeatriz.com) &nbsp;&middot;&nbsp;
