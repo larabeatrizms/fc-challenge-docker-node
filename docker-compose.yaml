@@ -1,7 +1,6 @@
-version: '3'
+version: "3"
 
 services:
-
   nginx:
     build:
       context: ./nginx
@@ -11,10 +10,10 @@ services:
     networks:
       - node-network
     ports:
-     - "8080:80"
+      - "8080:80"
     depends_on:
       - app
-    
+
   db:
     platform: linux/x86_64
     image: mysql:5.7
@@ -27,6 +26,24 @@ services:
     environment:
       - MYSQL_DATABASE=nodedb
       - MYSQL_ROOT_PASSWORD=node
+    networks:
+      - node-network
+
+  db_seeder:
+    image: mysql:5.7
+    volumes:
+      - ./db.sql:/db.sql
+    environment:
+      - MYSQL_DATABASE=nodedb
+      - MYSQL_ROOT_PASSWORD=node
+    entrypoint:
+      [
+        "bash",
+        "-c",
+        "sleep 10 && mysql --user=root --host=db --port=3306 --password=node nodedb < /db.sql && exit",
+      ]
+    depends_on:
+      - db
     networks:
       - node-network
 

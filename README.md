@@ -16,6 +16,12 @@ Clone repository:
 git clone https://github.com/larabeatrizms/fc-challenge-docker-go.git
 ```
 
+Install dependencies:
+
+```bash
+npm install
+```
+
 Running project:
 
 ```bash
